@@ -1,0 +1,38 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+<h2>Find Letters</h2>
+
+<form asp-action="Index" method="post">
+    <div>
+        <label for="input">Enter a string:</label>
+        <input type="text" id="input" name="input" />
+        <button type="submit">Find Capitals</button>
+    </div>
+</form>
+
+@if (ViewBag.Message != null)
+{
+    <p>@ViewBag.Message</p>
+}
+
+@if (ViewBag.Result != null && ((int[])ViewBag.Result).Length > 0)
+{
+    <p>Capital letters numbers:</p>
+    <ul>
+        @foreach (var index in (int[])ViewBag.Result)
+        {
+            <li>@index</li>
+        }
+    </ul>
+}
+else if (ViewBag.Result != null)
+{
+    <p>No capital letters found in the input string.</p>
+}
